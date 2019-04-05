@@ -1,0 +1,15 @@
+<Project>  
+  <PropertyGroup>
+    <Authors>Philippe Kräuchi</Authors>
+    <Company>Kraphity GmbH</Company>
+    <Copyright>Philippe Kräuchi (Kraphity GmbH)</Copyright>
+    <RepositoryUrl>https://github.com/kraphity/validation</RepositoryUrl>
+    <Product>Kraphity.Validation</Product>
+	<VersionPrefix>1.0.0</VersionPrefix>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)Validation.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+</Project>
