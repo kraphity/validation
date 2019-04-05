@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Kraphity.Validation</AssemblyName>
     <RootNamespace>Kraphity.Validation</RootNamespace>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
 </Project>
