@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
 
 namespace Kraphity.Validation.Rules
 {
@@ -6,7 +7,7 @@ namespace Kraphity.Validation.Rules
     {
         private readonly IValidationRule<T> notNullRule;
 
-        public NotEmptyRule(string memberName) 
+        public NotEmptyRule(string memberName)
             : base(memberName, "Value cannot be empty.")
         {
             this.notNullRule = new NotNullRule<T>(memberName);
@@ -17,6 +18,13 @@ namespace Kraphity.Validation.Rules
             if (value is string s)
             {
                 return Task.FromResult(!string.IsNullOrEmpty(s));
+            }
+
+            if (value is IEnumerable enumerable)
+            {
+                return Task.FromResult(enumerable == null
+                    ? false
+                    : enumerable.Any());
             }
 
             return this.notNullRule
