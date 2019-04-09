@@ -1,9 +1,9 @@
 param (
 	[string]$configuration = "Release",
 	[string]$output = $env:BUILD_ARTIFACTSTAGINGDIRECTORY,
-	[string]$branchName = $env:BUILD_SOURCEBRANCHNAME,
+	[string]$preReleaseLabel = $env:BUILD_SOURCEBRANCHNAME,
 	[string]$buildName = $env:BUILD_BUILDNUMBER,
-	[switch]$rtm
+	[switch]$final
 )
 
 function has-error() {
@@ -16,8 +16,8 @@ if([string]::IsNullOrEmpty($output)) {
 	$output = "$scriptPath/Artifacts"
 }
 
-if([string]::IsNullOrEmpty($branchName)) {
-	$branchName = "local"
+if([string]::IsNullOrEmpty($preReleaseLabel)) {
+	$preReleaseLabel = "local"
 }
 
 $buildNumber = 0
@@ -26,8 +26,8 @@ if($buildName -match "^.*-(?<rev>\d+)$") {
 	$buildNumber = $matches["rev"]
 }
 
-if(!$rtm) {
-	$versionSuffix = "{0}{1}" -f $branchName, $buildNumber
+if(!$final) {
+	$versionSuffix = "{0}{1}" -f $preReleaseLabel, $buildNumber
 }
 
 $dotnetBuildParams = @('--configuration', $configuration)
